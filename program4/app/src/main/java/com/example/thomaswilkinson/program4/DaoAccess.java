@@ -30,5 +30,4 @@ public interface DaoAccess {
     @Update
     int update(Cont contData);
 
-
 }

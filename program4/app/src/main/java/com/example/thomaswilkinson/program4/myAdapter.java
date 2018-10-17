@@ -140,15 +140,16 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
                     }
                     else {
                         int location=-1;
-                        for(int i = 0; i < myList.size(); i++)
-                        {
-                            if(myList.get(i)._id == pID){
+                        for(int i = 0; i < myList.size(); i++) {
+                            if (myList.get(i)._id == pID) {
                                 location = i;
                             }
                         }
-                            myList.get(location);
-                            container cont = new container(name.getText().toString(), category.getText().toString(), date.getText().toString(), MainActivity.getFloatFrom(amount), note.getText().toString(), 444444);
+                            container cont = new container(name.getText().toString(), category.getText().toString(), date.getText().toString(), MainActivity.getFloatFrom(amount), note.getText().toString(), pID);
                             myList.set(location,cont);
+                            final Cont tempCont = new Cont(cont.cName,cont.cCategory,cont.cDate,cont.cAmount,cont.cNote);
+                            tempCont.id = pID;
+                            MainActivity.editDb(tempCont);
                             dialog.dismiss();
                             notifyDataSetChanged();
                     }
@@ -166,6 +167,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
                 location = i;
             }
         }
+        MainActivity.deleteDb(myList.get(location)._id);
         myList.remove(location);
         notifyDataSetChanged();
     }

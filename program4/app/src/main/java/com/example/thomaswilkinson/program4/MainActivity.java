@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.FloatingActionButton;
+import static java.lang.Math.toIntExact;
 
 import android.util.Log;
 import android.view.View;
@@ -25,9 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class MainActivity extends AppCompatActivity {
-    AppDatabase db;
-    List<container> value = new ArrayList<>();
+    static AppDatabase db;
+    static List<container> value = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +123,24 @@ public class MainActivity extends AppCompatActivity {
         myAdapter mAdapter = new myAdapter(value, R.layout.my_row, MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
     }
+    static void deleteDb(final long id)
+    {
+        Thread myThread = new Thread(){
+            public void run() {
+                db.ContDao().deleteById(id);
+            }
+        };
+        myThread.start();
+    }
+    static void editDb(final Cont cont)
+    {
 
+        Thread myThread = new Thread(){
+            public void run() {
+                db.ContDao().update(cont);
+            }
+        };
+        myThread.start();
+    }
 }
 
