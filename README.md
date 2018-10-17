@@ -1,8 +1,8 @@
 Program # 4
 
-Name:
-Cosc 5730 or 4730
+Name:Thomas Wilkinson
+Cosc 4730
 
-Description: (how to run the program, phone/emulator screen size, android version ie 7.0)
+Description: Run on pixel 2, press + button to add entrys, press on entry to get information/edit/delete options. 
 
 Anything that doesn't work:
